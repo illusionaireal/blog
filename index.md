@@ -2,22 +2,22 @@
 
 Link [Edit this page](https://github.com/illusionaireal/blog/edit/gh-pages/index.md) [Jekyll](https://jekyllrb.com/) 
 
-#LVISAM 踩坑记录
+# LVISAM 踩坑记录
 
 
-##参数设置
+## 参数设置
 
-###KITTI篇
+### KITTI篇
 KITTI 数据采集平台硬件配置如下
 惯性导航系统（GPS / IMU）：OXTS RT 3003
 1台激光雷达：Velodyne HDL-64E
 2台灰度相机，1.4百万像素：Point Grey Flea 2（FL2-14S3M-C）
 2个彩色摄像头，1.4百万像素：Point Grey Flea 2（FL2-14S3C-C）
 4个变焦镜头，4-8毫米：Edmund Optics NT59-917
-####raw_sync 数据
-#####kitti 激光雷达、摄像头数据融合：
+#### raw_sync 数据
+##### kitti 激光雷达、摄像头数据融合：
 要将Velodyne坐标中的点x投影到左侧的彩色图像中y：
-使用公式：y = P_rect_2 * R0_rect *Tr_velo_to_cam * x
+$$y = P_rect_2 * R0_rect *Tr_velo_to_cam * x$$
 
 将Velodyne坐标中的点投影到右侧的彩色图像中：
 
