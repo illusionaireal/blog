@@ -92,3 +92,26 @@ $$Y = P\_rect\_xx \times R\_rect\_00 \times (R|T)\_velo\_to\_cam \times (R|T)\_i
 主要是得到点云到图像的旋转平移矩阵：Tr_velo_to_cam = （R | T）
 
 以上引用自页面[KITTI标定数据解读](https://bingxiong.vip/?p=18523)
+
+# DEBUG记录
+
+## 提示Point cloud is not in dense format, please remove NaN points first!
+这是由于点云数据中存在NaN点导致的错误，加入pcl::removeNaNFromPointCloud()函数解决。
+
+'''
+//utility.h中添加
+#include <pcl/filters/impl/filter.hpp>
+'''
+
+'''    
+// **/LVI-SAM/src/lidar_odometry/imageProjection.cpp**  198-202    
+
+// ROS_ERROR("Point cloud is not in dense format, please remove NaN points first!");
+
+// ros::shutdown();
+
+std::vector<int> indices;
+
+pcl::removeNaNFromPointCloud(*laserCloudIn,*laserCloudIn,indices);
+
+'''
